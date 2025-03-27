@@ -1,0 +1,161 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+@keyframes firework {
+  0% { transform: translate(var(--x), var(--initialY)); width: 2px; opacity: 1; }
+  50% { width: 2px; opacity: 1; }
+  100% { width: 160px; opacity: 0; }
+}
+
+@keyframes balloonFloat {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, -10px) rotate(5deg);
+  }
+  50% {
+    transform: translate(-5px, -20px) rotate(-5deg);
+  }
+  75% {
+    transform: translate(-10px, -10px) rotate(5deg);
+  }
+}
+
+/* Balloon Styles */
+.balloons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  width: 40px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  animation: balloonFloat 5s infinite;
+  opacity: 0.6;
+}
+
+.balloon::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 30px;
+  background: white;
+  bottom: -30px;
+  left: 50%;
+}
+
+/* Position balloons randomly */
+.balloon-1 { left: 10%; top: 20%; animation-delay: 0s; background: #FF69B4; }
+.balloon-2 { left: 20%; top: 40%; animation-delay: 0.5s; background: #87CEEB; }
+.balloon-3 { left: 30%; top: 60%; animation-delay: 1s; background: #98FB98; }
+.balloon-4 { left: 40%; top: 80%; animation-delay: 1.5s; background: #DDA0DD; }
+.balloon-5 { right: 10%; top: 20%; animation-delay: 2s; background: #F0E68C; }
+.balloon-6 { right: 20%; top: 40%; animation-delay: 2.5s; background: #FF69B4; }
+.balloon-7 { right: 30%; top: 60%; animation-delay: 3s; background: #87CEEB; }
+.balloon-8 { right: 40%; top: 80%; animation-delay: 3.5s; background: #98FB98; }
+.balloon-9 { left: 50%; top: 30%; animation-delay: 4s; background: #DDA0DD; }
+.balloon-10 { right: 50%; top: 70%; animation-delay: 4.5s; background: #F0E68C; }
+
+/* Fireworks */
+.fireworks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fireworks::before,
+.fireworks::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  box-shadow: 
+    -120px -218.66667px blue,
+    248px -16.66667px #00ff84,
+    190px 16.33333px #002bff,
+    -113px -308.66667px #ff009d,
+    -109px -287.66667px #ffb300,
+    -50px -313.66667px #ff006e,
+    226px -31.66667px #ff4000,
+    180px -351.66667px #ff00d0,
+    -12px -338.66667px #00f6ff,
+    220px -388.66667px #99ff00;
+  animation: 1s bang ease-out infinite backwards;
+}
+
+.fireworks::after {
+  animation-delay: 1.25s, 1.25s, 1.25s;
+  animation-duration: 1.25s, 1.25s, 6.25s;
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slide-up 1s ease-out forwards;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-600 {
+  animation-delay: 600ms;
+}
+
+/* Cake and candle animations */
+.cake-container {
+  position: relative;
+}
+
+.candle-flames {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+}
+
+.candle-flame {
+  width: 10px;
+  height: 20px;
+  background: #FFD700;
+  border-radius: 50% 50% 20% 20%;
+  animation: float 2s infinite;
+  box-shadow: 0 0 10px #FFA500, 0 0 20px #FF4500, 0 0 30px #FF0000;
+}
